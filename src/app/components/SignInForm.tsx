@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function Card({ user, pagetype }: Props) {
-  const welcome = user?.name ? <div>Hello {user?.name}!</div> : null;
+  const welcome = user?.name ? <div>Hello {user?.name}! Welcome to Next Support</div> : null;
   const userImage = user?.image ? (
     <Image
       src={user?.image}
