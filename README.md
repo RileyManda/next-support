@@ -154,7 +154,7 @@ bun dev
 To run tests, run the following command:
 
 ```sh
-  Yarn test
+  yarn test
 ```
 
 
