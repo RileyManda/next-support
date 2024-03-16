@@ -4,6 +4,7 @@ type Case = {
   title: string;
   description: string;
   status: string;
+  createdAt: Date;
 };
 
 type Props = {
@@ -21,7 +22,12 @@ const CaseList = ({ initialCases }: Props) => {
   const handleCaseSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Create new case with default status
-    const newCase: Case = { title, description, status: defaultStatus };
+    const newCase: Case = {
+      title,
+      description,
+      status: defaultStatus,
+      createdAt: new Date(),
+    };
     setCases([...cases, newCase]);
     setTitle("");
     setDescription("");
@@ -58,6 +64,7 @@ const CaseList = ({ initialCases }: Props) => {
               <td>{c.title}</td>
               <td>{c.description}</td>
               <td>{c.status}</td>
+              <td>{c.createdAt.toDateString()}</td>
             </tr>
           ))}
         </tbody>

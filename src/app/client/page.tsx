@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import SignInForm from "../components/Auth/SignInForm";
+import SignInForm from "../components/authenticatedsession/SignInForm";
 
 export default function ClientPage() {
   const { data: session } = useSession({
