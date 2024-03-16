@@ -18,7 +18,22 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        const user = { id: "42", name: "riley", password: "next-app" };
+        if (
+          !process.env.USER_ID ||
+          !process.env.USER_NAME ||
+          !process.env.USER_PASSWORD
+        ) {
+          throw new Error(
+            "Environment variables USER_ID, USER_NAME, and USER_PASSWORD must be set"
+          );
+        }
+
+        const user = {
+          id: process.env.USER_ID,
+          name: process.env.USER_NAME,
+          password: process.env.USER_PASSWORD,
+        };
+
         if (
           credentials?.username === user.name &&
           credentials?.password === user.password
