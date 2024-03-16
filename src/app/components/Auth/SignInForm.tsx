@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import TicketList from "@/app/components/Tickets";
+import CaseList from "@/app/components/Cases";
 
 type User =
   | {
@@ -35,7 +35,7 @@ const SignInForm = ({ user, pagetype }: Props) => {
       {welcome}
       {userImage}
       <p>{pagetype} Page!</p>
-      {user && <TicketList initialTickets={[]} />}
+      {user && <CaseList initialCases={[]} />}
     </div>
   );
 };

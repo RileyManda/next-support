@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 
-type Ticket = {
+type Case = {
   title: string;
   description: string;
   status: string;
 };
 
 type Props = {
-  initialTickets: Ticket[];
+  initialCases: Case[];
 };
 
-const TicketList = ({ initialTickets }: Props) => {
-  const [tickets, setTickets] = useState<Ticket[]>(initialTickets);
+const CaseList = ({ initialCases }: Props) => {
+  const [cases, setCases] = useState<Case[]>(initialCases);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   // Set default status to "open"
   const defaultStatus = "open";
 
-  const handleTicketSubmit = (event: React.FormEvent) => {
+  const handleCaseSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Create new ticket with default status
-    const newTicket: Ticket = { title, description, status: defaultStatus };
-    setTickets([...tickets, newTicket]);
+    // Create new case with default status
+    const newCase: Case = { title, description, status: defaultStatus };
+    setCases([...cases, newCase]);
     setTitle("");
     setDescription("");
   };
 
   return (
     <div>
-      <form onSubmit={handleTicketSubmit}>
+      <form onSubmit={handleCaseSubmit}>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -42,7 +42,7 @@ const TicketList = ({ initialTickets }: Props) => {
           placeholder="Description"
           required
         />
-        <button type="submit">Create Ticket</button>
+        <button type="submit">Create Case</button>
       </form>
       <table>
         <thead>
@@ -53,11 +53,11 @@ const TicketList = ({ initialTickets }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {tickets.map((ticket, index) => (
+          {cases.map((c, index) => (
             <tr key={index}>
-              <td>{ticket.title}</td>
-              <td>{ticket.description}</td>
-              <td>{ticket.status}</td>
+              <td>{c.title}</td>
+              <td>{c.description}</td>
+              <td>{c.status}</td>
             </tr>
           ))}
         </tbody>
@@ -66,4 +66,4 @@ const TicketList = ({ initialTickets }: Props) => {
   );
 };
 
-export default TicketList;
+export default CaseList;
