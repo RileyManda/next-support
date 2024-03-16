@@ -11,6 +11,7 @@ export default function Navigation() {
       </NavButtons>
       <NavButtons href="/api/auth/signin">Sign In</NavButtons>
       <NavButtons href="/api/auth/signout">Sign Out</NavButtons>
+      <NavButtons href="/createticket">Create Ticket</NavButtons>
     </>
   );
 }
