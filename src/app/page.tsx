@@ -2,7 +2,7 @@ import { options } from "./api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 import SingnInForm from "./components/authenticatedsession/Dashboard";
 
-export default async function Home() {
+const Home = async () => {
   const session = await getServerSession(options);
 
   return (
@@ -14,4 +14,6 @@ export default async function Home() {
       )}
     </>
   );
-}
+};
+
+export default Home;

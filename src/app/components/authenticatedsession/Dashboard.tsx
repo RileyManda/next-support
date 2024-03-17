@@ -33,6 +33,7 @@ const Dashboard = ({ user, pagetype }: Props) => {
   ) : null;
 
   return (
+    
     <Stack
       horizontalAlign="center"
       verticalAlign="start"
