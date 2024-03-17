@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
+import {
+  TextField,
+  Stack,
+  DetailsList,
+  DetailsListLayoutMode,
+  SelectionMode,
+  PrimaryButton
+} from "@fluentui/react";
 import { useRouter } from "next/navigation";
-// import { useRouter } from "next/router";
+import { MdEdit, MdRemoveRedEye } from "react-icons/md";
 
 type Case = {
   title: string;
   description: string;
   status: string;
   createdAt: Date;
-  comments: string[];
 };
 
 type Props = {
@@ -18,22 +25,25 @@ const CaseList = ({ initialCases }: Props) => {
   const [cases, setCases] = useState<Case[]>(initialCases);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [isClient, setIsClient] = useState(false);
-  const defaultStatus = "open";
+  const router = useRouter();
 
- const router = useRouter();
   useEffect(() => {
-    setIsClient(typeof window === "object");
-  }, []);
+    if (typeof window !== "undefined") {
+      if (window.location && window.location.pathname) {
+        if (window.location.pathname === "/") {
+          router.push("/home");
+        }
+      }
+    }
+  }, [router]);
 
   const handleCaseSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const newCase: Case = {
       title,
       description,
-      status: defaultStatus,
+      status: "open",
       createdAt: new Date(),
-      comments: [],
     };
     setCases([...cases, newCase]);
     setTitle("");
@@ -41,52 +51,78 @@ const CaseList = ({ initialCases }: Props) => {
   };
 
   const handleCaseSelection = (caseData: Case) => {
-    if (isClient) {
-      const caseId = encodeURIComponent(JSON.stringify(caseData));
-       router.push(`/case/${encodeURIComponent(caseId)}`);
-    }
+    router.push(`/case/${encodeURIComponent(JSON.stringify(caseData))}`);
   };
 
-  
-
+  const columns = [
+    { key: "column1", name: "Title", fieldName: "title", minWidth: 100 },
+    {
+      key: "column2",
+      name: "Description",
+      fieldName: "description",
+      minWidth: 100,
+    },
+    { key: "column3", name: "Status", fieldName: "status", minWidth: 100 },
+    {
+      key: "column4",
+      name: "Created At",
+      fieldName: "createdAt",
+      minWidth: 100,
+      onRender: (item: Case) => item.createdAt.toDateString(),
+    },
+    {
+      key: "column5",
+      name: "Actions",
+      minWidth: 100,
+      onRender: (item: Case) => {
+        return (
+          <>
+            <MdEdit
+              style={{ cursor: "pointer" }}
+              onClick={() => handleCaseSelection(item)}
+            />
+            <MdRemoveRedEye
+              style={{ cursor: "pointer", marginLeft: "10px" }}
+              onClick={() => handleCaseSelection(item)}
+            />
+          </>
+        );
+      },
+    },
+  ];
 
   return (
-    <div>
-      <form onSubmit={handleCaseSubmit}>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
-          required
+    <Stack horizontalAlign="center" tokens={{ childrenGap: 15 }}>
+      <Stack styles={{ root: { width: "50%" } }}>
+        <form onSubmit={handleCaseSubmit}>
+          <Stack tokens={{ childrenGap: 10 }}>
+            <TextField
+              value={title}
+              onChange={(e, newValue) => setTitle(newValue || "")}
+              placeholder="Title"
+              required
+            />
+            <TextField
+              value={description}
+              onChange={(e, newValue) => setDescription(newValue || "")}
+              placeholder="Description"
+              required
+              multiline
+              rows={3}
+            />
+            <PrimaryButton type="submit">Create Case</PrimaryButton>
+          </Stack>
+        </form>
+      </Stack>
+      <Stack styles={{ root: { width: "100%" } }}>
+        <DetailsList
+          items={cases}
+          columns={columns}
+          selectionMode={SelectionMode.none}
+          layoutMode={DetailsListLayoutMode.fixedColumns}
         />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
-          required
-        />
-        <button type="submit">Create Case</button>
-      </form>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cases.map((c, index) => (
-            <tr key={index} onClick={() => handleCaseSelection(c)}>
-              <td>{c.title}</td>
-              <td>{c.description}</td>
-              <td>{c.status}</td>
-              <td>{c.createdAt.toDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      </Stack>
+    </Stack>
   );
 };
 

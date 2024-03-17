@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Stack } from "@fluentui/react/lib/Stack";
 import CaseList from "@/app/components/CaseList";
 
 type User =
@@ -31,12 +32,19 @@ const SignInForm = ({ user, pagetype }: Props) => {
   ) : null;
 
   return (
-    <div>
-      {welcome}
-      {userImage}
-      <p>{pagetype} Page!</p>
-      {user && <CaseList initialCases={[]} />}
-    </div>
+    <Stack
+      horizontalAlign="center"
+      verticalAlign="start"
+      tokens={{ childrenGap: 0 }}
+      styles={{ root: { marginTop: -400 } }}
+    >
+      <Stack.Item>
+        {welcome}
+        {userImage}
+        <p>{pagetype} Page!</p>
+        {user && <CaseList initialCases={[]} />}
+      </Stack.Item>
+    </Stack>
   );
 };
 export default SignInForm;
