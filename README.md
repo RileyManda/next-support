@@ -36,8 +36,7 @@
 
 # 📖 NextSupport <a name="about-project"></a>
 
-Next Support is a nextjs full stack application that enables users to signin | signup and create support tickets. The application is built using, Typescript.
-
+Next Support is a nextjs full stack application that enables users to signin | signup and create cases.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -65,6 +64,16 @@ Next Support is a nextjs full stack application that enables users to signin | s
   </ul>
 </details>
 
+
+<details>
+  <summary>NextAuth</summary>
+  <ul>
+    <li><a href="https://www.typescriptlang.org/docs/](https://next-auth.js.org/getting-started/introduction">NextAuth</a></li>
+  </ul>
+</details>
+
+
+
 <!-- Features -->
 ## 🛠 Key Features <a name="key-features"></a>
 ### Features <a name="key-features"></a>
@@ -73,11 +82,10 @@ Next Support is a nextjs full stack application that enables users to signin | s
 
 > SignIn
 
-> Create Tickets
+> Create Cases
 
-> View Tickets
+> View Cases
 
-> View Ticket Status
 
 <p align="right">
 (<a href="#readme-top">back to top</a>)</p>
@@ -120,11 +128,17 @@ git clone https://github.com/RileyManda/next-support.git
 
 ### Install
 
-Install this project with:
-
-
 ```sh
   cd next-support
+```
+Install dependencies:
+```sh
+  yarn
+```
+
+Generate your secret:
+```sh
+ openssl rand -base64 32
 ```
 
 ### Usage
@@ -146,8 +160,6 @@ If using pnpm package manager:
 pnpm dev
 # or
 bun dev
-
-
 
 ### Run tests
 
