@@ -17,7 +17,7 @@ type Props = {
   pagetype: string;
 };
 
-const SignInForm = ({ user, pagetype }: Props) => {
+const Dashboard = ({ user, pagetype }: Props) => {
   const welcome = user?.name ? (
     <div>Hello {user?.name}! Welcome to Next Support</div>
   ) : null;
@@ -47,4 +47,4 @@ const SignInForm = ({ user, pagetype }: Props) => {
     </Stack>
   );
 };
-export default SignInForm;
+export default Dashboard;

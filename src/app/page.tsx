@@ -1,6 +1,6 @@
 import { options } from "./api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
-import SingnInForm from "./components/authenticatedsession/SignInForm";
+import SingnInForm from "./components/authenticatedsession/Dashboard";
 
 export default async function Home() {
   const session = await getServerSession(options);
