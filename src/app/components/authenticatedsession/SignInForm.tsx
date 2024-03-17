@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import CaseList from "@/app/components/CaseList";
 
 type User =
   | {
@@ -13,8 +16,10 @@ type Props = {
   pagetype: string;
 };
 
-export default function Card({ user, pagetype }: Props) {
-  const welcome = user?.name ? <div>Hello {user?.name}! Welcome to Next Support</div> : null;
+const SignInForm = ({ user, pagetype }: Props) => {
+  const welcome = user?.name ? (
+    <div>Hello {user?.name}! Welcome to Next Support</div>
+  ) : null;
   const userImage = user?.image ? (
     <Image
       src={user?.image}
@@ -30,6 +35,8 @@ export default function Card({ user, pagetype }: Props) {
       {welcome}
       {userImage}
       <p>{pagetype} Page!</p>
+      {user && <CaseList initialCases={[]} />}
     </div>
   );
-}
+};
+export default SignInForm;
