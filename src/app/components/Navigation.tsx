@@ -1,16 +1,63 @@
+"use client";
+
+import * as React from "react";
+import { Nav, INavStyles, INavLinkGroup } from "@fluentui/react/lib/Nav";
 import Image from "next/image";
-import NavButtons from "./NavButtons";
-import AppLogo from "../../../app-logo.png"
+import AppLogo from "../../../app-logo.png";
+import { Stack } from "@fluentui/react";
 
 
-export default function Navigation() {
+const navStyles: Partial<INavStyles> = {
+  root: {
+    width: 208,
+    height: 350,
+    boxSizing: "border-box",
+    border: "1px solid #eee",
+    overflowY: "auto",
+  },
+};
+
+const navLinkGroups: INavLinkGroup[] = [
+  {
+    links: [
+      {
+        name: "Dashboard",
+        url: "",
+        key: "dashboard",
+        icon: "Dashboard",
+      },
+      {
+        name: "Cases",
+        url: "",
+        key: "cases",
+        icon: "Dashboard",
+      },
+      {
+        name: "Sign Out",
+        url: "/api/auth/signout",
+        key: "signout",
+        icon: "Signout",
+      },
+    ],
+  },
+];
+
+const Navigation = () => {
   return (
     <>
-      <NavButtons href="/">
+      <Stack verticalAlign="center">
         <Image src={AppLogo} alt="Logo" width={50} height={50} />
-      </NavButtons>
-      <NavButtons href="/api/auth/signin">Sign In</NavButtons>
-      <NavButtons href="/api/auth/signout">Sign Out</NavButtons>
+      </Stack>
+      <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }}  styles={{ root: { marginTop: 30 } }}>
+        <Stack verticalAlign="center">
+          <Nav
+            ariaLabel="Nav"
+            styles={navStyles}
+            groups={navLinkGroups}
+          />
+        </Stack>
+      </Stack>
     </>
   );
-}
+};
+export default Navigation;

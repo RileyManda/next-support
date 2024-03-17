@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { Stack } from "@fluentui/react/lib/Stack";
 import CaseList from "@/app/components/CaseList";
+import { Breadcrumb } from "@fluentui/react/lib/Breadcrumb";
 
 type User =
   | {
@@ -16,7 +18,7 @@ type Props = {
   pagetype: string;
 };
 
-const SignInForm = ({ user, pagetype }: Props) => {
+const Dashboard = ({ user, pagetype }: Props) => {
   const welcome = user?.name ? (
     <div>Hello {user?.name}! Welcome to Next Support</div>
   ) : null;
@@ -31,12 +33,20 @@ const SignInForm = ({ user, pagetype }: Props) => {
   ) : null;
 
   return (
-    <div>
-      {welcome}
-      {userImage}
-      <p>{pagetype} Page!</p>
-      {user && <CaseList initialCases={[]} />}
-    </div>
+    
+    <Stack
+      horizontalAlign="center"
+      verticalAlign="start"
+      tokens={{ childrenGap: 12 }}
+      styles={{ root: { marginTop: -400 } }}
+    >
+      <Stack.Item>
+        <Breadcrumb items={[{ text: pagetype, key: "page" }]} />
+        <Stack styles={{ root: { marginBottom: 12 } }}>{welcome}</Stack>
+        {userImage}
+        {user && <CaseList initialCases={[]} />}
+      </Stack.Item>
+    </Stack>
   );
 };
-export default SignInForm;
+export default Dashboard;

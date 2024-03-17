@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   description: "Next Support is a nextjs full stack application that enables users to signin | signup and create support tickets. The application is built using, Typescript.",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -26,3 +26,4 @@ export default function RootLayout({
     </html>
   );
 }
+export default RootLayout;
