@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Stack } from "@fluentui/react/lib/Stack";
 import CaseList from "@/app/components/CaseList";
+import { Breadcrumb } from "@fluentui/react/lib/Breadcrumb";
 
 type User =
   | {
@@ -35,13 +36,13 @@ const Dashboard = ({ user, pagetype }: Props) => {
     <Stack
       horizontalAlign="center"
       verticalAlign="start"
-      tokens={{ childrenGap: 0 }}
+      tokens={{ childrenGap: 12 }}
       styles={{ root: { marginTop: -400 } }}
     >
       <Stack.Item>
-        {welcome}
+        <Breadcrumb items={[{ text: pagetype, key: "page" }]} />
+        <Stack styles={{ root: { marginBottom: 12 } }}>{welcome}</Stack>
         {userImage}
-        <p>{pagetype} Page!</p>
         {user && <CaseList initialCases={[]} />}
       </Stack.Item>
     </Stack>
