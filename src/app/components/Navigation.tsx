@@ -20,12 +20,6 @@ const navLinkGroups: INavLinkGroup[] = [
   {
     links: [
       {
-        name: "Sign In",
-        url: "/api/auth/signin",
-        key: "signin",
-        icon: "Signin",
-      },
-      {
         name: "Sign Out",
         url: "/api/auth/signout",
         key: "signout",
@@ -35,21 +29,16 @@ const navLinkGroups: INavLinkGroup[] = [
   },
 ];
 
-export default function Navigation() {
+const Navigation = () => {
   return (
     <>
       <Stack verticalAlign="center">
         <Image src={AppLogo} alt="Logo" width={50} height={50} />
       </Stack>
-      <Stack
-        horizontal
-        verticalAlign="center"
-        tokens={{ childrenGap: 10 }}
-        styles={{ root: { marginTop: 30 } }}
-      >
+      <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }}  styles={{ root: { marginTop: 30 } }}>
         <Stack verticalAlign="center">
           <Nav
-            ariaLabel="Nav basic example"
+            ariaLabel="Nav"
             styles={navStyles}
             groups={navLinkGroups}
           />
@@ -57,4 +46,5 @@ export default function Navigation() {
       </Stack>
     </>
   );
-}
+};
+export default Navigation;
