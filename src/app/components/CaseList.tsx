@@ -93,9 +93,12 @@ const CaseList = ({ initialCases }: Props) => {
 
   return (
     <Stack horizontalAlign="center" tokens={{ childrenGap: 15 }}>
-      <Stack styles={{ root: { width: "50%" } }}>
+      <Stack styles={{ root: { width: "100%" } }}>
         <form onSubmit={handleCaseSubmit}>
-          <Stack tokens={{ childrenGap: 10 }}>
+          <Stack
+            tokens={{ childrenGap: 10 }}
+            styles={{ root: { width: "100%" } }}
+          >
             <TextField
               value={title}
               onChange={(e, newValue) => setTitle(newValue || "")}
@@ -115,12 +118,12 @@ const CaseList = ({ initialCases }: Props) => {
         </form>
       </Stack>
       <Stack styles={{ root: { width: "100%" } }}>
-        <DetailsList
-          items={cases}
-          columns={columns}
-          selectionMode={SelectionMode.none}
-          layoutMode={DetailsListLayoutMode.fixedColumns}
-        />
+          <DetailsList
+            items={cases}
+            columns={columns}
+            selectionMode={SelectionMode.none}
+            layoutMode={DetailsListLayoutMode.fixedColumns}
+          />
       </Stack>
     </Stack>
   );

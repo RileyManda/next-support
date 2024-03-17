@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import Dashboard from "../components/authenticatedsession/Dashboard";
 
-export default async function ServerPage() {
+const ServerPage = async () => {
   const session = await getServerSession(options);
 
   if (!session) {
@@ -15,4 +15,5 @@ export default async function ServerPage() {
       <Dashboard user={session?.user} pagetype={"Server"} />
     </div>
   );
-}
+};
+export default ServerPage;
