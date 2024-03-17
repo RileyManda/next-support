@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import CaseList from "@/app/components/Cases";
+import CaseList from "@/app/components/CaseList";
 
 type User =
   | {

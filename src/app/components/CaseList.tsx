@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 
 type Case = {
   title: string;
   description: string;
   status: string;
   createdAt: Date;
+  comments: string[];
 };
 
 type Props = {
@@ -15,23 +18,37 @@ const CaseList = ({ initialCases }: Props) => {
   const [cases, setCases] = useState<Case[]>(initialCases);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
-  // Set default status to "open"
+  const [isClient, setIsClient] = useState(false);
   const defaultStatus = "open";
+
+ const router = useRouter();
+  useEffect(() => {
+    setIsClient(typeof window === "object");
+  }, []);
 
   const handleCaseSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Create new case with default status
     const newCase: Case = {
       title,
       description,
       status: defaultStatus,
       createdAt: new Date(),
+      comments: [],
     };
     setCases([...cases, newCase]);
     setTitle("");
     setDescription("");
   };
+
+  const handleCaseSelection = (caseData: Case) => {
+    if (isClient) {
+      const caseId = encodeURIComponent(JSON.stringify(caseData));
+       router.push(`/case/${encodeURIComponent(caseId)}`);
+    }
+  };
+
+  
+
 
   return (
     <div>
@@ -60,7 +77,7 @@ const CaseList = ({ initialCases }: Props) => {
         </thead>
         <tbody>
           {cases.map((c, index) => (
-            <tr key={index}>
+            <tr key={index} onClick={() => handleCaseSelection(c)}>
               <td>{c.title}</td>
               <td>{c.description}</td>
               <td>{c.status}</td>

@@ -1,12 +1,12 @@
-import CaseList from "@/app/components/Cases";
+import CaseList from "@/app/components/CaseList";
 
 type Case = {
   title: string;
   description: string;
   status: string;
   createdAt: Date;
+  comments: string[];
 };
-
 
 const CreateCasePage = () => {
   const initialCases: Case[] = [];
