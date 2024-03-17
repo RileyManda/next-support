@@ -6,6 +6,7 @@ import Image from "next/image";
 import AppLogo from "../../../app-logo.png";
 import { Stack } from "@fluentui/react";
 
+
 const navStyles: Partial<INavStyles> = {
   root: {
     width: 208,
@@ -19,6 +20,18 @@ const navStyles: Partial<INavStyles> = {
 const navLinkGroups: INavLinkGroup[] = [
   {
     links: [
+      {
+        name: "Dashboard",
+        url: "",
+        key: "dashboard",
+        icon: "Dashboard",
+      },
+      {
+        name: "Cases",
+        url: "",
+        key: "cases",
+        icon: "Dashboard",
+      },
       {
         name: "Sign Out",
         url: "/api/auth/signout",
