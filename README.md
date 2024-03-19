@@ -119,12 +119,10 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-
 ```sh
 cd my-folder
 git clone https://github.com/RileyManda/next-support.git
 ```
-
 
 ### Install
 
@@ -139,6 +137,15 @@ Install dependencies:
 Generate your secret:
 ```sh
  openssl rand -base64 32
+```
+
+Create an env file(.env.local) and add your own environment variables:
+
+```sh
+NEXTAUTH_SECRET=Yoursecret
+USER_ID=1
+USER_NAME=riley
+USER_PASSWORD=next-app
 ```
 
 ### Usage
